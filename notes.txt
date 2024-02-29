@@ -1,0 +1,18 @@
+
+// Why is need to attach the socket io with http server 
+
+Sure, let's delve deeper into why it's necessary to attach Socket.IO to an HTTP server instance rather than an Express request handler function, along with examples.
+
+Understanding Express and HTTP Servers
+Express: Express is a web application framework for Node.js that provides a robust set of features for building web applications and APIs. It simplifies routing, middleware creation, and request handling.
+
+HTTP Server: An HTTP server is a software application that receives and processes HTTP requests from clients (such as web browsers) and returns HTTP responses. In Node.js, the http module is commonly used to create HTTP servers.
+
+Why Attach Socket.IO to an HTTP Server?
+Socket.IO is built on top of WebSocket, which is a communication protocol providing full-duplex communication channels over a single TCP connection. Unlike HTTP, WebSocket allows for real-time, bidirectional communication between clients and servers.
+
+When you're using Socket.IO with Express, you're essentially trying to integrate real-time capabilities into your Express application. To achieve this, Socket.IO needs to establish WebSocket connections with clients. Here's why attaching Socket.IO to an HTTP server is essential:
+
+WebSocket Support: Socket.IO needs access to the underlying HTTP server to upgrade the initial HTTP request to a WebSocket connection. Attaching Socket.IO to an HTTP server allows it to handle WebSocket handshake and communication seamlessly.
+
+Single Server Instance: By attaching Socket.IO to the same HTTP server instance that Express is using, you ensure that both the HTTP server and WebSocket server are running within the same Node.js process. This simplifies resource management and allows for better integration between HTTP and WebSocket requests.
