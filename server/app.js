@@ -15,8 +15,16 @@ const io = new Server(server, {
 }); // circuit
 
 io.on("connection", (socket) => {
-  console.log("user is connected ");
-  console.log("user  id ", socket.id);
+  console.log("some user is connected ", socket.id);
+  socket.on("send_message", ({ message, room }) => {
+    // io.emit("recive_message", data);
+    // socket.broadcast.emit("recive_message", data);
+    io.to(room).emit("recive_message", message);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
+  });
 });
 
 app.get("/", (req, res) => {
